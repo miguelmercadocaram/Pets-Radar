@@ -16,6 +16,11 @@
 		2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DAA72753AE5300893D32 /* APICaller.swift */; };
 		2D64DAAC2753CEC300893D32 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DAAB2753CEC300893D32 /* AuthResponse.swift */; };
 		2DFE6B652754A28D0007C3B8 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DFE6B642754A28D0007C3B8 /* Keys.plist */; };
+		2DFE6B672754BC090007C3B8 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B662754BC090007C3B8 /* TabBarViewController.swift */; };
+		2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B682754BC340007C3B8 /* HomeViewController.swift */; };
+		2DFE6B6B2754BC9E0007C3B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */; };
+		2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */; };
+		2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6E27554EDE0007C3B8 /* Animals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		2D64DAA72753AE5300893D32 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		2D64DAAB2753CEC300893D32 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		2DFE6B642754A28D0007C3B8 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		2DFE6B662754BC090007C3B8 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		2DFE6B682754BC340007C3B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		2DFE6B6E27554EDE0007C3B8 /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				2D64DA94275392A200893D32 /* WelcomeViewController.swift */,
+				2DFE6B662754BC090007C3B8 /* TabBarViewController.swift */,
+				2DFE6B682754BC340007C3B8 /* HomeViewController.swift */,
+				2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */,
+				2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -96,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				2D64DAAB2753CEC300893D32 /* AuthResponse.swift */,
+				2DFE6B6E27554EDE0007C3B8 /* Animals.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,8 +189,13 @@
 				2D64DA95275392A200893D32 /* WelcomeViewController.swift in Sources */,
 				2D64DAA6275392D400893D32 /* AuthManager.swift in Sources */,
 				2D64DA91275392A200893D32 /* AppDelegate.swift in Sources */,
+				2DFE6B6B2754BC9E0007C3B8 /* SearchViewController.swift in Sources */,
+				2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */,
 				2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */,
+				2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */,
+				2DFE6B672754BC090007C3B8 /* TabBarViewController.swift in Sources */,
 				2D64DAAC2753CEC300893D32 /* AuthResponse.swift in Sources */,
+				2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */,
 				2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

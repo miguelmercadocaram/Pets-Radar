@@ -12,13 +12,8 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemRed
-//        AuthManager.shared.exchangeCodeForToken { _ in
-//            
-//        }
-     
-        APICaller.shared.getAnimals { result in
-            print(result)
-        }
+
+ 
     }
 
 

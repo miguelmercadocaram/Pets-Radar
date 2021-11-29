@@ -12,10 +12,17 @@ import Foundation
 final class AuthManager {
     static let shared = AuthManager()
     
+    var isSignedIn: Bool {
+        return accessToken != nil
+    }
     private var refreshingToken = false
     
     private var accessToken: String? {
         return UserDefaults.standard.string(forKey: "access_token")
+    }
+    
+    private var refreshToken: String? {
+        return UserDefaults.standard.string(forKey: "refresh_token")
     }
     
     private var tokenExpirationDate: Date? {
@@ -86,13 +93,28 @@ final class AuthManager {
         task.resume()
         
     }
+    
+    private var onRefreshBlocks = [(String) -> Void]()
 
     public func withValidToken(completion: @escaping (String) -> Void) {
         if let token = accessToken {
-            print(token)
             completion(token)
         }
     }
+    
+    public func refreshIfNeeded(completion: ((Bool) -> Void)?) {
+        guard !refreshingToken else {
+            return
+        }
+        guard shouldRefreshToken else {
+            completion?(true)
+            return
+        }
+        exchangeCodeForToken { success in
+            print("Token has been refreshed")
+        }
+    }
+    
     
     private func cacheToken(result: AuthResponse) {
         UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
