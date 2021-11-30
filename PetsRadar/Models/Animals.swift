@@ -15,14 +15,45 @@ import Foundation
 //    let animal: [Animal]
 //}
 
+struct AnimalsResponse: Codable {
+    let animals: [Animals]
+}
+
 struct Animals: Codable {
-    let animals: [Animal]
+    let animals: Animal
 }
 
 struct Animal: Codable {
     let age: String
     let name: String
-    let description: String
+    let description: String?
+    let photos: [Photo]?
+    let status: String
+    let published_at: String
+    let contact: Contact
+}
+
+struct Photo: Codable {
+    let small: String
+    let medium: String
+    let large: String
+    let full: String
+
+}
+
+struct Contact: Codable {
+    let email: String
+    let phone: String
+   let address: Address
+}
+
+struct Address: Codable {
+    let address1: String
+    let address2: String?
+    let city: String
+    let state: String
+    let postcode: String
+    let country: String
 }
 
 //{

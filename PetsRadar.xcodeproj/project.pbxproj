@@ -21,9 +21,14 @@
 		2DFE6B6B2754BC9E0007C3B8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */; };
 		2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */; };
 		2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B6E27554EDE0007C3B8 /* Animals.swift */; };
+		2DFE6B722756908C0007C3B8 /* NewAnimalsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */; };
+		2DFE6B75275692690007C3B8 /* NewAnimalsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */; };
+		2DFE6B782756947C0007C3B8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B772756947C0007C3B8 /* Extension.swift */; };
+		C9E5047FD297E3AFA72C4A12 /* Pods_PetsRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3384A5467DB77B41A25BD75A /* Pods_PetsRadar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.debug.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.debug.xcconfig"; sourceTree = "<group>"; };
 		2D64DA8D275392A200893D32 /* PetsRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D64DA90275392A200893D32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D64DA92275392A200893D32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +45,11 @@
 		2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		2DFE6B6E27554EDE0007C3B8 /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
+		2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnimalsCellViewModel.swift; sourceTree = "<group>"; };
+		2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnimalsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DFE6B772756947C0007C3B8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		3384A5467DB77B41A25BD75A /* Pods_PetsRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetsRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80AF445F1F6A556D7D8B3A65 /* Pods-PetsRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.release.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E5047FD297E3AFA72C4A12 /* Pods_PetsRadar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +69,8 @@
 			children = (
 				2D64DA8F275392A200893D32 /* PetsRadar */,
 				2D64DA8E275392A200893D32 /* Products */,
+				B5A4502DB3397E63370DABDF /* Pods */,
+				EBE4AAF1D3029E7BA98A005C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +85,8 @@
 		2D64DA8F275392A200893D32 /* PetsRadar */ = {
 			isa = PBXGroup;
 			children = (
+				2DFE6B762756945E0007C3B8 /* Resources */,
+				2DFE6B73275692490007C3B8 /* View */,
 				2D64DAAA2753CE8E00893D32 /* Models */,
 				2D64DAA92753B19D00893D32 /* Controllers */,
 				2D64DAA4275392BE00893D32 /* Managers */,
@@ -109,10 +124,53 @@
 		2D64DAAA2753CE8E00893D32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DFE6B70275690540007C3B8 /* ViewModels */,
 				2D64DAAB2753CEC300893D32 /* AuthResponse.swift */,
 				2DFE6B6E27554EDE0007C3B8 /* Animals.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2DFE6B70275690540007C3B8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2DFE6B73275692490007C3B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2DFE6B762756945E0007C3B8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2DFE6B772756947C0007C3B8 /* Extension.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B5A4502DB3397E63370DABDF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */,
+				80AF445F1F6A556D7D8B3A65 /* Pods-PetsRadar.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EBE4AAF1D3029E7BA98A005C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3384A5467DB77B41A25BD75A /* Pods_PetsRadar.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D64DAA1275392A200893D32 /* Build configuration list for PBXNativeTarget "PetsRadar" */;
 			buildPhases = (
+				7A968E570E7768D3FF808A38 /* [CP] Check Pods Manifest.lock */,
 				2D64DA89275392A200893D32 /* Sources */,
 				2D64DA8A275392A200893D32 /* Frameworks */,
 				2D64DA8B275392A200893D32 /* Resources */,
+				1C760F91AFB95644D7E80533 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,6 +241,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C760F91AFB95644D7E80533 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetsRadar/Pods-PetsRadar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PetsRadar/Pods-PetsRadar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PetsRadar/Pods-PetsRadar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A968E570E7768D3FF808A38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PetsRadar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D64DA89275392A200893D32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -193,10 +295,13 @@
 				2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */,
 				2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */,
 				2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */,
+				2DFE6B722756908C0007C3B8 /* NewAnimalsCellViewModel.swift in Sources */,
 				2DFE6B672754BC090007C3B8 /* TabBarViewController.swift in Sources */,
+				2DFE6B782756947C0007C3B8 /* Extension.swift in Sources */,
 				2D64DAAC2753CEC300893D32 /* AuthResponse.swift in Sources */,
 				2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */,
 				2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */,
+				2DFE6B75275692690007C3B8 /* NewAnimalsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +437,7 @@
 		};
 		2D64DAA2275392A200893D32 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -361,6 +467,7 @@
 		};
 		2D64DAA3275392A200893D32 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80AF445F1F6A556D7D8B3A65 /* Pods-PetsRadar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
