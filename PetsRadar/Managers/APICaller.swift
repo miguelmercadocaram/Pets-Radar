@@ -44,7 +44,7 @@ final class APICaller {
     }
     
     public func getAnimals(completion: @escaping (Result<[Animal],Error>) -> Void) {
-        createRequest(with: URL(string: Constants.baseAPIURL + "/animals?type=dog&page=2&limit=1"), type: .GET) { request in
+        createRequest(with: URL(string: Constants.baseAPIURL + "/animals?type=dog&page=1"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else {
                     completion(.failure(APIError.failedToGetData))
@@ -53,9 +53,9 @@ final class APICaller {
                 do {
           //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     
-                   let result = try JSONDecoder().decode(AnimalsResponse.self, from: data)
-                    print(result)
-                    completion(.success(result.animals.compactMap({$0.animals})))
+                  let result = try JSONDecoder().decode(Animals.self, from: data)
+                   // print(result)
+                    completion(.success(result.animals))
                 }
                 catch {
                     completion(.failure(error))

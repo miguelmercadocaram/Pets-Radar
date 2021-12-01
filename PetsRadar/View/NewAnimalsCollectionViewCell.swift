@@ -16,7 +16,7 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.image = UIImage(systemName: "photo")
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -39,7 +39,7 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .systemYellow
+        contentView.backgroundColor = .systemPink
         contentView.addSubview(animalsImageView)
         contentView.addSubview(animalsNameLabel)
         contentView.addSubview(animalsDescriptionLabel)
@@ -69,7 +69,7 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
     func configure(with viewModel: NewAnimalsCellViewModel) {
         animalsNameLabel.text = viewModel.name
         animalsDescriptionLabel.text = viewModel.description
-        animalsImageView.sd_setImage(with: viewModel.artworkURL, completed: nil)
+        animalsImageView.sd_setImage(with: viewModel.artworkURL, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
         
     }
     

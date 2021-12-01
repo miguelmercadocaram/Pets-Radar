@@ -7,20 +7,8 @@
 
 import Foundation
 
-//struct NewAnimalsResponse: Codable {
-//    let animals: AnimalsResponse
-//}
-//
-//struct AnimalsResponse: Codable {
-//    let animal: [Animal]
-//}
-
-struct AnimalsResponse: Codable {
-    let animals: [Animals]
-}
-
 struct Animals: Codable {
-    let animals: Animal
+    let animals: [Animal]
 }
 
 struct Animal: Codable {
@@ -30,7 +18,7 @@ struct Animal: Codable {
     let photos: [Photo]?
     let status: String
     let published_at: String
-    let contact: Contact
+    let contact: Contact?
 }
 
 struct Photo: Codable {
@@ -42,13 +30,13 @@ struct Photo: Codable {
 }
 
 struct Contact: Codable {
-    let email: String
-    let phone: String
-   let address: Address
+    let email: String?
+    let phone: String?
+   let address: Address?
 }
 
 struct Address: Codable {
-    let address1: String
+    let address1: String?
     let address2: String?
     let city: String
     let state: String
