@@ -16,7 +16,7 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 8
         imageView.image = UIImage(systemName: "photo")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -39,7 +39,7 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.backgroundColor = .systemPink
+       
         contentView.addSubview(animalsImageView)
         contentView.addSubview(animalsNameLabel)
         contentView.addSubview(animalsDescriptionLabel)

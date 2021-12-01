@@ -22,6 +22,9 @@ enum BrowseSectionType {
 class HomeViewController: UIViewController {
     
     private var newAnimals = [Animal]()
+    private var viewModels = [NewAnimalsCellViewModel]()
+    private var nextPage = 1
+    private var isWaiting = false
     
     private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, _ in
         return createSectionLayout(section: sectionIndex)
@@ -48,6 +51,9 @@ class HomeViewController: UIViewController {
             case .success(let model):
                 DispatchQueue.main.async {
                     self?.newAnimals = model
+//                    self?.viewModels = model.compactMap({
+//                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+//                    })
                     self?.collectionView.reloadData()
                 }
               
@@ -60,6 +66,30 @@ class HomeViewController: UIViewController {
         //print(newAnimals.map({$0.name}))
         configureCollectionView()
         view.addSubview(spinner)
+        
+     
+    }
+    
+    private func updateNextSet() {
+        
+            APICaller.shared.getAnimalsNextPage(page: nextPage) { [weak self] result in
+                switch result {
+                case .success(let model):
+                    DispatchQueue.main.async {
+                        self?.newAnimals = model
+    //                    self?.viewModels = model.compactMap({
+    //                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+    //                    })
+                        self?.collectionView.reloadData()
+                        self?.isWaiting = false
+                    }
+                  
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        
+ 
     }
     
     private func configureCollectionView() {
@@ -73,7 +103,7 @@ class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
-        collectionView.backgroundColor = .systemYellow
+      
     }
     
     private func configureModels(newAnimals: [Animal]) {
@@ -123,7 +153,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return UICollectionViewCell()
         }
         cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
-        print(newAnimals)
+        //cell.configure(with: viewModels[indexPath.row])
+        
         return cell
         
     }
@@ -176,5 +207,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             return section
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
+            nextPage += 1
+            updateNextSet()
+            let seconds = 0.5
+            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+                // Put your code which should be executed with a delay here
+                collectionView.setContentOffset(.zero, animated: true)
+            }
+            
+           }
     }
 }
