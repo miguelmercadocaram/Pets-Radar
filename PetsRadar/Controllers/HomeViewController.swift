@@ -50,10 +50,10 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {
-                    self?.newAnimals = model
-//                    self?.viewModels = model.compactMap({
-//                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
-//                    })
+                   // self?.newAnimals = model
+                    self?.viewModels = model.compactMap({
+                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                    })
                     self?.collectionView.reloadData()
                 }
               
@@ -76,12 +76,12 @@ class HomeViewController: UIViewController {
                 switch result {
                 case .success(let model):
                     DispatchQueue.main.async {
-                        self?.newAnimals = model
-    //                    self?.viewModels = model.compactMap({
-    //                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
-    //                    })
+                        self?.viewModels.append(contentsOf: model.compactMap({
+                            NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                        }))
+                        
                         self?.collectionView.reloadData()
-                        self?.isWaiting = false
+                      
                     }
                   
                 case .failure(let error):
@@ -124,67 +124,30 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let type = sections[section]
-//        switch type {
-//        case .newAnimals(let viewModels):
-//            return viewModels.count
-//        }
-        return newAnimals.count
+
+        return viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-//        let type = sections[indexPath.section]
-//
-//        switch type {
-//        case .newAnimals(let viewModels):
-//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAnimalsCollectionViewCell.identifier, for: indexPath) as? NewAnimalsCollectionViewCell else {
-//                return UICollectionViewCell()
-//            }
-//            print(viewModels.count)
-//            let viewModel = viewModels[indexPath.row]
-//            cell.configure(with: viewModel)
-//            return cell
-        //}
-//        print(newAnimals.count)
-//        let sect = newAnimals[indexPath.row]
-        let newPets = newAnimals[indexPath.row]
+
+       // let newPets = newAnimals[indexPath.row]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAnimalsCollectionViewCell.identifier, for: indexPath) as? NewAnimalsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
-        //cell.configure(with: viewModels[indexPath.row])
+//        cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
+        cell.configure(with: viewModels[indexPath.row])
+        
         
         return cell
         
     }
     
     public static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
-//        let supplementaryViews = [
-//            NSCollectionLayoutBoundarySupplementaryItem(
-//                layoutSize: NSCollectionLayoutSize(
-//                    widthDimension: .fractionalWidth(1),
-//                    heightDimension: .absolute(50)),
-//                elementKind: UICollectionView.elementKindSectionHeader,
-//                alignment: .top)
-//        ]
+
         switch section {
         case 0:
-            // Item
-//            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(400)))
-//            item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-//
-//            // Group
-//
-//
-//            let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(400)), subitem: item, count: 2)
-//            let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(400)), subitem: verticalGroup, count: 1)
-//
-//            // Section
-//            let section = NSCollectionLayoutSection(group: horizontalGroup)
-//            section.orthogonalScrollingBehavior = .continuous
-//            section.boundarySupplementaryItems = supplementaryViews
-//            return section
+
             
             let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7)
@@ -213,12 +176,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
             nextPage += 1
             updateNextSet()
-            let seconds = 0.5
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                // Put your code which should be executed with a delay here
-                collectionView.setContentOffset(.zero, animated: true)
-            }
-            
+           
            }
     }
+    
+
 }
