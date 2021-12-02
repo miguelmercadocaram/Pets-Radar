@@ -19,7 +19,39 @@ struct Animal: Codable {
     let status: String
     let published_at: String
     let contact: Contact?
+    let tags: [String]?
+    let attributes: Attribute?
+    let breeds: Breed?
+    let colors: Color?
+    let gender: String?
+    let type: String?
+    let url: String?
+    let environment: Environment?
+    
 }
+
+struct Environment: Codable {
+    let children: Bool?
+    let dogs: Bool?
+    let cats: Bool?
+}
+
+struct Color: Codable {
+    let primary: String?
+}
+
+struct Breed: Codable {
+    let primary: String?
+    let mixed: Bool?
+    let unknown: Bool?
+    
+}
+
+struct Attribute: Codable {
+    let declawed: String?
+    let attributes: [String: String]?
+}
+
 
 struct Photo: Codable {
     let small: String

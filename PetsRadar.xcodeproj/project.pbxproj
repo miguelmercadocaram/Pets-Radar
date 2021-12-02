@@ -24,6 +24,10 @@
 		2DFE6B722756908C0007C3B8 /* NewAnimalsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */; };
 		2DFE6B75275692690007C3B8 /* NewAnimalsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */; };
 		2DFE6B782756947C0007C3B8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B772756947C0007C3B8 /* Extension.swift */; };
+		2DFE6B7A2758CB6A0007C3B8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B792758CB6A0007C3B8 /* DetailViewController.swift */; };
+		2DFE6B7D2758CC560007C3B8 /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B7C2758CC560007C3B8 /* DetailCollectionViewCell.swift */; };
+		2DFE6B7F2758CC990007C3B8 /* DetailCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B7E2758CC990007C3B8 /* DetailCollectionReusableView.swift */; };
+		2DFE6B8127590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFE6B8027590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift */; };
 		C9E5047FD297E3AFA72C4A12 /* Pods_PetsRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3384A5467DB77B41A25BD75A /* Pods_PetsRadar.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +52,10 @@
 		2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnimalsCellViewModel.swift; sourceTree = "<group>"; };
 		2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnimalsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DFE6B772756947C0007C3B8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		2DFE6B792758CB6A0007C3B8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2DFE6B7C2758CC560007C3B8 /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DFE6B7E2758CC990007C3B8 /* DetailCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionReusableView.swift; sourceTree = "<group>"; };
+		2DFE6B8027590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		3384A5467DB77B41A25BD75A /* Pods_PetsRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetsRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80AF445F1F6A556D7D8B3A65 /* Pods-PetsRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.release.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +125,7 @@
 				2DFE6B682754BC340007C3B8 /* HomeViewController.swift */,
 				2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */,
 				2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */,
+				2DFE6B792758CB6A0007C3B8 /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -135,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */,
+				2DFE6B8027590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -142,7 +152,9 @@
 		2DFE6B73275692490007C3B8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2DFE6B7B2758CC060007C3B8 /* ReusableViews */,
 				2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */,
+				2DFE6B7C2758CC560007C3B8 /* DetailCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,13 +167,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		2DFE6B7B2758CC060007C3B8 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				2DFE6B7E2758CC990007C3B8 /* DetailCollectionReusableView.swift */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
 		B5A4502DB3397E63370DABDF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */,
 				80AF445F1F6A556D7D8B3A65 /* Pods-PetsRadar.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -291,7 +310,9 @@
 				2D64DA95275392A200893D32 /* WelcomeViewController.swift in Sources */,
 				2D64DAA6275392D400893D32 /* AuthManager.swift in Sources */,
 				2D64DA91275392A200893D32 /* AppDelegate.swift in Sources */,
+				2DFE6B7D2758CC560007C3B8 /* DetailCollectionViewCell.swift in Sources */,
 				2DFE6B6B2754BC9E0007C3B8 /* SearchViewController.swift in Sources */,
+				2DFE6B7F2758CC990007C3B8 /* DetailCollectionReusableView.swift in Sources */,
 				2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */,
 				2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */,
 				2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */,
@@ -299,7 +320,9 @@
 				2DFE6B672754BC090007C3B8 /* TabBarViewController.swift in Sources */,
 				2DFE6B782756947C0007C3B8 /* Extension.swift in Sources */,
 				2D64DAAC2753CEC300893D32 /* AuthResponse.swift in Sources */,
+				2DFE6B8127590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift in Sources */,
 				2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */,
+				2DFE6B7A2758CB6A0007C3B8 /* DetailViewController.swift in Sources */,
 				2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */,
 				2DFE6B75275692690007C3B8 /* NewAnimalsCollectionViewCell.swift in Sources */,
 			);

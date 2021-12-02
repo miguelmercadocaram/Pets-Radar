@@ -180,5 +180,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
            }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pets = viewModels[indexPath.row]
+        let detailVC = DetailViewController()
+        detailVC.title = pets.name
+        detailVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 
 }

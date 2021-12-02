@@ -51,10 +51,10 @@ final class APICaller {
                     return
                 }
                 do {
-          //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+         // let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     
-                  let result = try JSONDecoder().decode(Animals.self, from: data)
-                   //print(result)
+                 let result = try JSONDecoder().decode(Animals.self, from: data)
+                  // print(result)
                     completion(.success(result.animals))
                 }
                 catch {
