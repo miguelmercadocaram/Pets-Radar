@@ -28,12 +28,15 @@ class DetailCollectionReusableView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .light)
+        label.numberOfLines = 0
         return label
     }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 8
         imageView.image = UIImage(systemName: "photo")
         return imageView
     }()
@@ -56,15 +59,16 @@ class DetailCollectionReusableView: UICollectionReusableView {
         imageView.frame = CGRect(x: (width-imageSize)/2, y: 20, width: imageSize, height: imageSize)
         
         nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 44)
-        descriptionLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 44)
+       
+        descriptionLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width, height: 70)
         tagsLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width-20, height: 44)
     }
     
-    func configure(with viewModels: DetailsCollectionViewCellViewModel) {
+    func configure(with viewModels: NewAnimalsCellViewModel) {
         nameLabel.text = viewModels.name
-        tagsLabel.text = viewModels.tags
+        tagsLabel.text = viewModels.description
         descriptionLabel.text = viewModels.description
         //imageView.sd_setImage(with: viewModels.artworkURL, completed: nil)
-        imageView.sd_setImage(with: viewModels.photos, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
+        imageView.sd_setImage(with: viewModels.artworkURL, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
     }
 }

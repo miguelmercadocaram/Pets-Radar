@@ -27,6 +27,7 @@ struct Animal: Codable {
     let type: String?
     let url: String?
     let environment: Environment?
+    let id: Int
     
 }
 

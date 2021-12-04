@@ -28,7 +28,16 @@ class DetailViewController: UIViewController {
     
     private var animal: [Animal] = []
 
+    private var animals: NewAnimalsCellViewModel
     
+    init(animals: NewAnimalsCellViewModel) {
+        self.animals = animals
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,18 +51,30 @@ class DetailViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        APICaller.shared.getAnimals { [weak self] result in
-            switch result {
-            case .success(let model):
-                DispatchQueue.main.async {
-                    self?.animal = model
-                    self?.collectionView.reloadData()
-                }
-              
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        APICaller.shared.getAnimals { [weak self] result in
+//            switch result {
+//            case .success(let model):
+//                DispatchQueue.main.async {
+//                    self?.animal = model
+//
+//                    self?.collectionView.reloadData()
+//                }
+//
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+        
+//        APICaller.shared.getAnimalsID(animalId: animals) { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let model):
+//
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
         
         
         
@@ -85,7 +106,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionReusableView.identifier, for: indexPath) as? DetailCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
-        let headerViewModel = DetailsCollectionViewCellViewModel(name: animal.first?.name, age: animal.first?.age, description: animal.first?.description ?? "-", photos: URL(string: animal.first?.photos?.first?.large ?? "-"), tags: animal.first?.tags?.first)
+//        let headerViewModel = DetailsCollectionViewCellViewModel(name: animal.first?.name, age: animal.first?.age, description: animal.first?.description ?? "-", photos: URL(string: animal.first?.photos?.first?.large ?? "-"), tags: animal.first?.tags?.first)
+       // let headerViewModel = DetailsCollectionViewCellViewModel(name: animals.name, age: animals.age, description: animals.description ?? "No Description", photos: URL(string: animals.photos?.first?.large ?? ""), tags: animals.tags?.first)
+        let headerViewModel = NewAnimalsCellViewModel(name: animals.name, description: animals.description, artworkURL: animals.artworkURL)
          header.configure(with: headerViewModel)
         return header
  

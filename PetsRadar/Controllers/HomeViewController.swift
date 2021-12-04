@@ -20,6 +20,7 @@ enum BrowseSectionType {
 }
 
 class HomeViewController: UIViewController {
+
     
     private var newAnimals = [Animal]()
     private var viewModels = [NewAnimalsCellViewModel]()
@@ -50,24 +51,32 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {
-                   // self?.newAnimals = model
+                    //self?.newAnimals = model
                     self?.viewModels = model.compactMap({
                         NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
                     })
                     self?.collectionView.reloadData()
                 }
-              
+
             case .failure(let error):
                 print(error)
             }
         }
-     
-        //self.configureModels(newAnimals: newAnimals)
-        //print(newAnimals.map({$0.name}))
         configureCollectionView()
         view.addSubview(spinner)
         
-     
+  
+        
+
+    }
+    
+    private func reloadArray() {
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
+        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
     }
     
     private func updateNextSet() {
@@ -106,14 +115,6 @@ class HomeViewController: UIViewController {
       
     }
     
-    private func configureModels(newAnimals: [Animal]) {
-        self.newAnimals = newAnimals
-        
-        sections.append(.newAnimals(viewModels: newAnimals.compactMap({
-            return NewAnimalsCellViewModel(name: $0.name , description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.full ?? "-"))
-        })))
-        collectionView.reloadData()
-    }
     
 }
 
@@ -124,22 +125,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
 
-       // let newPets = newAnimals[indexPath.row]
+
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAnimalsCollectionViewCell.identifier, for: indexPath) as? NewAnimalsCollectionViewCell else {
             return UICollectionViewCell()
         }
-//        cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
-        cell.configure(with: viewModels[indexPath.row])
         
-        
+            let newPets = viewModels[indexPath.row]
+//            cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
+           
+        cell.configure(with: newPets)
         return cell
+        
         
     }
     
@@ -175,14 +177,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == collectionView.numberOfItems(inSection: indexPath.section) - 1 {
             nextPage += 1
-            updateNextSet()
-           
+           updateNextSet()
+          //reloadArray()
+            collectionView.reloadData()
+
            }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pets = viewModels[indexPath.row]
-        let detailVC = DetailViewController()
+        let detailVC = DetailViewController(animals: pets)
         detailVC.title = pets.name
         detailVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(detailVC, animated: true)
