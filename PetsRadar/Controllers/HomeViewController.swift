@@ -51,9 +51,10 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let model):
                 DispatchQueue.main.async {
-                    //self?.newAnimals = model
+                    self?.newAnimals = model
                     self?.viewModels = model.compactMap({
-                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                        //NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "No description", artworkURL: URL(string: $0.photos?.first?.large ?? "-"), status: $0.status, age: $0.age, email: $0.contact?.email, phone: $0.contact?.phone, address: $0.contact?.address?.address1, city: $0.contact?.address?.city, breed: $0.breeds?.primary, gender: $0.gender, tag: $0.tags?.first, color: $0.colors?.primary)
                     })
                     self?.collectionView.reloadData()
                 }
@@ -69,16 +70,7 @@ class HomeViewController: UIViewController {
         
 
     }
-    
-    private func reloadArray() {
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-        viewModels.append(NewAnimalsCellViewModel(name: "pelayo", description: "monika", artworkURL: nil))
-    }
-    
+
     private func updateNextSet() {
         
             APICaller.shared.getAnimalsNextPage(page: nextPage) { [weak self] result in
@@ -86,7 +78,8 @@ class HomeViewController: UIViewController {
                 case .success(let model):
                     DispatchQueue.main.async {
                         self?.viewModels.append(contentsOf: model.compactMap({
-                            NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                            //NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
+                            NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "No description", artworkURL: URL(string: $0.photos?.first?.large ?? "-"), status: $0.status, age: $0.age, email: $0.contact?.email, phone: $0.contact?.phone, address: $0.contact?.address?.address1, city: $0.contact?.address?.city, breed: $0.breeds?.primary, gender: $0.gender, tag: $0.tags?.first, color: $0.colors?.primary)
                         }))
                         
                         self?.collectionView.reloadData()
@@ -187,6 +180,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let pets = viewModels[indexPath.row]
         let detailVC = DetailViewController(animals: pets)
+        print(newAnimals)
         detailVC.title = pets.name
         detailVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(detailVC, animated: true)

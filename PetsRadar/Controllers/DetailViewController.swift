@@ -108,7 +108,10 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
 //        let headerViewModel = DetailsCollectionViewCellViewModel(name: animal.first?.name, age: animal.first?.age, description: animal.first?.description ?? "-", photos: URL(string: animal.first?.photos?.first?.large ?? "-"), tags: animal.first?.tags?.first)
        // let headerViewModel = DetailsCollectionViewCellViewModel(name: animals.name, age: animals.age, description: animals.description ?? "No Description", photos: URL(string: animals.photos?.first?.large ?? ""), tags: animals.tags?.first)
-        let headerViewModel = NewAnimalsCellViewModel(name: animals.name, description: animals.description, artworkURL: animals.artworkURL)
+       // let headerViewModel = NewAnimalsCellViewModel(name: animals.name, description: animals.description, artworkURL: animals.artworkURL)
+       
+        
+        let headerViewModel =  NewAnimalsCellViewModel(name: animals.name, description: animals.description ?? "No description", artworkURL: animals.artworkURL, status: animals.status, age: animals.age, email: animals.email, phone: animals.phone, address: animals.address, city: animals.city, breed: animals.breed, gender: animals.gender, tag: animals.tag, color: animals.color)
          header.configure(with: headerViewModel)
         return header
  

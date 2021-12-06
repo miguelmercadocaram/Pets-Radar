@@ -13,6 +13,7 @@ class DetailCollectionReusableView: UICollectionReusableView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 22, weight: .semibold)
+        label.textAlignment = .center
         return label
     }()
     
@@ -20,7 +21,8 @@ class DetailCollectionReusableView: UICollectionReusableView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 14, weight: .light)
         return label
     }()
     
@@ -28,9 +30,66 @@ class DetailCollectionReusableView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
+    
+    private let ageLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let breedLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let colorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let genderLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let emailLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    private let phoneLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -47,6 +106,13 @@ class DetailCollectionReusableView: UICollectionReusableView {
         addSubview(nameLabel)
         addSubview(descriptionLabel)
         addSubview(tagsLabel)
+        addSubview(ageLabel)
+        addSubview(breedLabel)
+        addSubview(colorLabel)
+        addSubview(genderLabel)
+        addSubview(emailLabel)
+        addSubview(phoneLabel)
+        
         
     }
     
@@ -60,15 +126,29 @@ class DetailCollectionReusableView: UICollectionReusableView {
         
         nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 44)
        
-        descriptionLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width, height: 70)
-        tagsLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width-20, height: 44)
+        tagsLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 44)
+        descriptionLabel.frame = CGRect(x: 10, y: tagsLabel.bottom, width: width, height: 70)
+        ageLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width, height: 70)
+        breedLabel.frame = CGRect(x: 10, y: ageLabel.bottom, width: width, height: 70)
+        colorLabel.frame = CGRect(x: 10, y: breedLabel.bottom, width: width, height: 70)
+        genderLabel.frame = CGRect(x: 10, y: colorLabel.bottom, width: width, height: 70)
+        emailLabel.frame = CGRect(x: 10, y: genderLabel.bottom, width: width, height: 70)
+        phoneLabel.frame = CGRect(x: 10, y: emailLabel.bottom, width: width, height: 70)
+        
+        
+        
     }
     
     func configure(with viewModels: NewAnimalsCellViewModel) {
         nameLabel.text = viewModels.name
-        tagsLabel.text = viewModels.description
+        tagsLabel.text = viewModels.tag
         descriptionLabel.text = viewModels.description
-        //imageView.sd_setImage(with: viewModels.artworkURL, completed: nil)
+        ageLabel.text = viewModels.age
+        breedLabel.text = viewModels.breed
+        colorLabel.text = viewModels.color
+        genderLabel.text = viewModels.gender
+        emailLabel.text = viewModels.email
+        phoneLabel.text = viewModels.phone
         imageView.sd_setImage(with: viewModels.artworkURL, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
     }
 }
