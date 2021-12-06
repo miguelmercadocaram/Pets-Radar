@@ -7,15 +7,79 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UISearchBarDelegate {
+    
+    let searchController: UISearchController = {
+        let vc = UISearchController(searchResultsController: SearchResultViewController())
+        vc.searchBar.placeholder = "Get A Dog Breed"
+        vc.searchBar.searchBarStyle = .minimal
+        vc.definesPresentationContext = true
+        return vc
+    }()
+    
+    private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(150)), subitem: item, count: 2)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+        return NSCollectionLayoutSection(group: group)
+    }))
+    
+    private var animals = [NewAnimalsCellViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Search"
+        view.backgroundColor = .systemBackground
+        navigationItem.searchController = searchController
+        view.addSubview(collectionView)
+        searchController.searchBar.delegate = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(SearchAnimalTypeCollectionViewCell.self, forCellWithReuseIdentifier: SearchAnimalTypeCollectionViewCell.identifier)
+        
+        
+    
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.frame = view.frame
+    }
 
-        view.backgroundColor = .systemPink
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let resultsController = searchController.searchResultsController as? SearchResultViewController, let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        print(query)
+        APICaller.shared.getAnimalsTypes(animalType: query) { result in
+            print(result)
+        }
+    }
+
+}
+
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 40
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchAnimalTypeCollectionViewCell.identifier, for: indexPath) as? SearchAnimalTypeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.backgroundColor = .blue
+      
+        return cell
     }
     
 
-
-
+    
+    
 }

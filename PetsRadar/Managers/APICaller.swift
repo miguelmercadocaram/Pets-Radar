@@ -54,7 +54,7 @@ final class APICaller {
                    // let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     
                 let result = try JSONDecoder().decode(Animals.self, from: data)
-                    print(result)
+                    //print(result)
                 completion(.success(result.animals))
                 }
                 catch {
@@ -76,7 +76,7 @@ final class APICaller {
         let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     
                 // let result = try JSONDecoder().decode(Animals.self, from: data)
-                    print(result)
+                    //print(result)
                 //completion(.success(result.animals))
                 }
                 catch {
@@ -100,6 +100,28 @@ final class APICaller {
                  let result = try JSONDecoder().decode(Animals.self, from: data)
                    //print(result)
                     completion(.success(result.animals))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    public func getAnimalsTypes(animalType: String, completion: @escaping (Result<[Animal],Error>) -> Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/animals?location=33126&type=dog&breed=\(animalType)"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+         let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    
+                 //let result = try JSONDecoder().decode(Animals.self, from: data)
+                   print("Animals Types: \(result)")
+                    //completion(.success(result.animals))
                 }
                 catch {
                     completion(.failure(error))

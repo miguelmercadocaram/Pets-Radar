@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D137F1F275E614500B75AC5 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */; };
+		2D137F21275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */; };
 		2D64DA91275392A200893D32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA90275392A200893D32 /* AppDelegate.swift */; };
 		2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA92275392A200893D32 /* SceneDelegate.swift */; };
 		2D64DA95275392A200893D32 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA94275392A200893D32 /* WelcomeViewController.swift */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.debug.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.debug.xcconfig"; sourceTree = "<group>"; };
+		2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnimalTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D64DA8D275392A200893D32 /* PetsRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D64DA90275392A200893D32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D64DA92275392A200893D32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 				2DFE6B662754BC090007C3B8 /* TabBarViewController.swift */,
 				2DFE6B682754BC340007C3B8 /* HomeViewController.swift */,
 				2DFE6B6A2754BC9E0007C3B8 /* SearchViewController.swift */,
+				2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */,
 				2DFE6B6C2754BCC90007C3B8 /* LibraryViewController.swift */,
 				2DFE6B792758CB6A0007C3B8 /* DetailViewController.swift */,
 			);
@@ -155,6 +160,7 @@
 				2DFE6B7B2758CC060007C3B8 /* ReusableViews */,
 				2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */,
 				2DFE6B7C2758CC560007C3B8 /* DetailCollectionViewCell.swift */,
+				2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				2DFE6B7F2758CC990007C3B8 /* DetailCollectionReusableView.swift in Sources */,
 				2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */,
 				2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */,
+				2D137F21275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift in Sources */,
 				2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */,
 				2DFE6B722756908C0007C3B8 /* NewAnimalsCellViewModel.swift in Sources */,
 				2DFE6B672754BC090007C3B8 /* TabBarViewController.swift in Sources */,
@@ -324,6 +331,7 @@
 				2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */,
 				2DFE6B7A2758CB6A0007C3B8 /* DetailViewController.swift in Sources */,
 				2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */,
+				2D137F1F275E614500B75AC5 /* SearchResultViewController.swift in Sources */,
 				2DFE6B75275692690007C3B8 /* NewAnimalsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
