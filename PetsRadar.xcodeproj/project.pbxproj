@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D137F1F275E614500B75AC5 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */; };
 		2D137F21275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */; };
+		2D137F23275F3B4000B75AC5 /* BreedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F22275F3B4000B75AC5 /* BreedCollectionViewCell.swift */; };
+		2D137F25275F3BB300B75AC5 /* BreedCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F24275F3BB300B75AC5 /* BreedCollectionViewCellViewModel.swift */; };
 		2D64DA91275392A200893D32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA90275392A200893D32 /* AppDelegate.swift */; };
 		2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA92275392A200893D32 /* SceneDelegate.swift */; };
 		2D64DA95275392A200893D32 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D64DA94275392A200893D32 /* WelcomeViewController.swift */; };
@@ -37,6 +39,8 @@
 		10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.debug.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.debug.xcconfig"; sourceTree = "<group>"; };
 		2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnimalTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D137F22275F3B4000B75AC5 /* BreedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D137F24275F3BB300B75AC5 /* BreedCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		2D64DA8D275392A200893D32 /* PetsRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D64DA90275392A200893D32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D64DA92275392A200893D32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			children = (
 				2DFE6B712756908C0007C3B8 /* NewAnimalsCellViewModel.swift */,
 				2DFE6B8027590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift */,
+				2D137F24275F3BB300B75AC5 /* BreedCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				2DFE6B74275692690007C3B8 /* NewAnimalsCollectionViewCell.swift */,
 				2DFE6B7C2758CC560007C3B8 /* DetailCollectionViewCell.swift */,
 				2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */,
+				2D137F22275F3B4000B75AC5 /* BreedCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,11 +321,13 @@
 			files = (
 				2D64DA95275392A200893D32 /* WelcomeViewController.swift in Sources */,
 				2D64DAA6275392D400893D32 /* AuthManager.swift in Sources */,
+				2D137F25275F3BB300B75AC5 /* BreedCollectionViewCellViewModel.swift in Sources */,
 				2D64DA91275392A200893D32 /* AppDelegate.swift in Sources */,
 				2DFE6B7D2758CC560007C3B8 /* DetailCollectionViewCell.swift in Sources */,
 				2DFE6B6B2754BC9E0007C3B8 /* SearchViewController.swift in Sources */,
 				2DFE6B7F2758CC990007C3B8 /* DetailCollectionReusableView.swift in Sources */,
 				2DFE6B692754BC340007C3B8 /* HomeViewController.swift in Sources */,
+				2D137F23275F3B4000B75AC5 /* BreedCollectionViewCell.swift in Sources */,
 				2D64DAA82753AE5300893D32 /* APICaller.swift in Sources */,
 				2D137F21275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift in Sources */,
 				2DFE6B6D2754BCC90007C3B8 /* LibraryViewController.swift in Sources */,

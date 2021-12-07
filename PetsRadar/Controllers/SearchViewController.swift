@@ -17,6 +17,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return vc
     }()
     
+    private let breeds: [String] = [
+    "Affenpinscher",
+    "Akita",
+    "pug",
+    "samoyed",
+    "Akbash",
+    "Basset Hound",
+    "Cocker Spaniel",
+    "Dachshund",
+    "Corgi"
+    
+    ]
+    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { _, _ -> NSCollectionLayoutSection? in
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7)
@@ -26,6 +39,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }))
     
     private var animals = [NewAnimalsCellViewModel]()
+    
+    private var breedsViewModel = [BreedCollectionViewCellViewModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +53,31 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(SearchAnimalTypeCollectionViewCell.self, forCellWithReuseIdentifier: SearchAnimalTypeCollectionViewCell.identifier)
+        collectionView.register(BreedCollectionViewCell.self, forCellWithReuseIdentifier: BreedCollectionViewCell.identifier)
+        guard let breed = breeds.randomElement() else {
+            return
+        }
+        APICaller.shared.getBreeds(breed: breed) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let breeds):
+                    self?.breedsViewModel = breeds.compactMap({
+                        BreedCollectionViewCellViewModel(breed: $0.breeds?.primary ?? "No Breed", image: URL(string: $0.photos?.first?.large ?? "No Image"))
+
+                    })
+                    self?.collectionView.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+
+            }
+        }
         
+//        APICaller.shared.getAnimalsTypes(animalType: nil) { result in
+//
+//        }
         
+        collectionView.reloadData()
     
         
     }
@@ -55,9 +92,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             return
         }
         print(query)
-        APICaller.shared.getAnimalsTypes(animalType: query) { result in
-            print(result)
-        }
+//        APICaller.shared.getAnimalsTypes(animalType: query) { result in
+//            print(result)
+//        }
     }
 
 }
@@ -67,14 +104,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return breedsViewModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchAnimalTypeCollectionViewCell.identifier, for: indexPath) as? SearchAnimalTypeCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BreedCollectionViewCell.identifier, for: indexPath) as? BreedCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .blue
+        let newBreed = breedsViewModel[indexPath.row]
+        cell.configure(with: newBreed)
       
         return cell
     }
