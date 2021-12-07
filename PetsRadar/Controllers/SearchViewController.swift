@@ -57,26 +57,35 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         guard let breed = breeds.randomElement() else {
             return
         }
-        APICaller.shared.getBreeds(breed: breed) { [weak self] result in
+//        APICaller.shared.getBreeds(breed: breed) { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let breeds):
+//                    self?.breedsViewModel = breeds.compactMap({
+//                        BreedCollectionViewCellViewModel(breed: $0.breeds?.primary ?? "No Breed", image: URL(string: $0.photos?.first?.large ?? "No Image"))
+//
+//                    })
+//                    self?.collectionView.reloadData()
+//                case .failure(let error):
+//                    print(error)
+//                }
+//
+//            }
+//        }
+      
+        APICaller.shared.getAnimalsBreeds { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let breeds):
                     self?.breedsViewModel = breeds.compactMap({
-                        BreedCollectionViewCellViewModel(breed: $0.breeds?.primary ?? "No Breed", image: URL(string: $0.photos?.first?.large ?? "No Image"))
-
+                        BreedCollectionViewCellViewModel(breed: $0.name, image: nil)
                     })
                     self?.collectionView.reloadData()
                 case .failure(let error):
                     print(error)
                 }
-
             }
         }
-        
-//        APICaller.shared.getAnimalsTypes(animalType: nil) { result in
-//
-//        }
-        
         collectionView.reloadData()
     
         
@@ -92,9 +101,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             return
         }
         print(query)
-//        APICaller.shared.getAnimalsTypes(animalType: query) { result in
-//            print(result)
-//        }
+
     }
 
 }
@@ -115,6 +122,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.configure(with: newBreed)
       
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let breed = breedsViewModel[indexPath.row]
+        let vc = BreedsViewController(breed: breed)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 
