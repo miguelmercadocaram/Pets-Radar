@@ -57,21 +57,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         guard let breed = breeds.randomElement() else {
             return
         }
-//        APICaller.shared.getBreeds(breed: breed) { [weak self] result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let breeds):
-//                    self?.breedsViewModel = breeds.compactMap({
-//                        BreedCollectionViewCellViewModel(breed: $0.breeds?.primary ?? "No Breed", image: URL(string: $0.photos?.first?.large ?? "No Image"))
-//
-//                    })
-//                    self?.collectionView.reloadData()
-//                case .failure(let error):
-//                    print(error)
-//                }
-//
-//            }
-//        }
+
       
         APICaller.shared.getAnimalsBreeds { [weak self] result in
             DispatchQueue.main.async {
@@ -95,12 +81,26 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.frame
     }
+  
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let resultsController = searchController.searchResultsController as? SearchResultViewController, let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard  let resultsController = searchController.searchResultsController as? SearchResultViewController, let query = searchController.searchBar.text, !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
-        print(query)
+       
+        APICaller.shared.getBreeds(breed: query) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let model):
+                    resultsController.update(with: model)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+       
+        searchBar.endEditing(true)
+        collectionView.reloadData()
 
     }
 
@@ -128,6 +128,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.deselectItem(at: indexPath, animated: true)
         let breed = breedsViewModel[indexPath.row]
         let vc = BreedsViewController(breed: breed)
+    
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }

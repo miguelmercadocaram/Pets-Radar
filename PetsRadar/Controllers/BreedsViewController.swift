@@ -90,6 +90,14 @@ extension BreedsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
 }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pets = breeds[indexPath.row]
+        let detailVC = DetailViewController(animals: pets)
+        detailVC.title = pets.name
+        detailVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 
 
 }
