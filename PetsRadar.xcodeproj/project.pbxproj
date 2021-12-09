@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0DF7282761EBFD001EF667 /* Favorites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DF7262761EBFD001EF667 /* Favorites.xcdatamodeld */; };
 		2D137F1F275E614500B75AC5 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */; };
 		2D137F21275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */; };
 		2D137F23275F3B4000B75AC5 /* BreedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D137F22275F3B4000B75AC5 /* BreedCollectionViewCell.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		10069A75476D1A21915A5532 /* Pods-PetsRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetsRadar.debug.xcconfig"; path = "Target Support Files/Pods-PetsRadar/Pods-PetsRadar.debug.xcconfig"; sourceTree = "<group>"; };
+		2D0DF7272761EBFD001EF667 /* Favorites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Favorites.xcdatamodel; sourceTree = "<group>"; };
 		2D137F1E275E614500B75AC5 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		2D137F20275E631F00B75AC5 /* SearchAnimalTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnimalTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D137F22275F3B4000B75AC5 /* BreedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D137F2C27612D1700B75AC5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2D0DF7262761EBFD001EF667 /* Favorites.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		2D64DA84275392A200893D32 = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		2D64DA8F275392A200893D32 /* PetsRadar */ = {
 			isa = PBXGroup;
 			children = (
+				2D137F2C27612D1700B75AC5 /* CoreData */,
 				2DFE6B762756945E0007C3B8 /* Resources */,
 				2DFE6B73275692490007C3B8 /* View */,
 				2D64DAAA2753CE8E00893D32 /* Models */,
@@ -349,6 +360,7 @@
 				2DFE6B8127590DE10007C3B8 /* DetailsCollectionViewCellViewModel.swift in Sources */,
 				2DFE6B6F27554EDE0007C3B8 /* Animals.swift in Sources */,
 				2DFE6B7A2758CB6A0007C3B8 /* DetailViewController.swift in Sources */,
+				2D0DF7282761EBFD001EF667 /* Favorites.xcdatamodeld in Sources */,
 				2D137F27275F7FAA00B75AC5 /* Breedss.swift in Sources */,
 				2D64DA93275392A200893D32 /* SceneDelegate.swift in Sources */,
 				2D137F1F275E614500B75AC5 /* SearchResultViewController.swift in Sources */,
@@ -568,6 +580,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2D0DF7262761EBFD001EF667 /* Favorites.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D0DF7272761EBFD001EF667 /* Favorites.xcdatamodel */,
+			);
+			currentVersion = 2D0DF7272761EBFD001EF667 /* Favorites.xcdatamodel */;
+			path = Favorites.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2D64DA85275392A200893D32 /* Project object */;
 }

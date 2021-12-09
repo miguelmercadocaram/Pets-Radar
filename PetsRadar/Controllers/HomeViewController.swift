@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 enum BrowseSectionType {
     case newAnimals(viewModels: [NewAnimalsCellViewModel])
@@ -24,8 +25,11 @@ class HomeViewController: UIViewController {
     
     private var newAnimals = [Animal]()
     private var viewModels = [NewAnimalsCellViewModel]()
+    private var favoritesCoreDataModel = [PetsViewModelEntity]()
     private var nextPage = 1
     private var isWaiting = false
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     private var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, _ in
         return createSectionLayout(section: sectionIndex)
@@ -66,9 +70,18 @@ class HomeViewController: UIViewController {
         configureCollectionView()
         view.addSubview(spinner)
         
+      
   
         
 
+    }
+    
+    func saveBalances() {
+        do {
+            try context.save()
+        }catch {
+            print("Error saving context \(error)")
+        }
     }
 
     private func updateNextSet() {
@@ -132,6 +145,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let newPets = viewModels[indexPath.row]
 //            cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
            
+        let petsCoreModel = PetsViewModelEntity(context: self.context)
+        
+        petsCoreModel.name = newPets.name
+        petsCoreModel.artworkURL = newPets.artworkURL
+        petsCoreModel.tag = newPets.tag
+        
+        self.favoritesCoreDataModel.append(petsCoreModel)
+        
+        
+        
         cell.configure(with: newPets)
         return cell
         

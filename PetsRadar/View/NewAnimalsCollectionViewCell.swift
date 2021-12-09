@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import CoreData
 
 class NewAnimalsCollectionViewCell: UICollectionViewCell {
     static let identifier = "NewAnimalsCollectionViewCell"
@@ -67,6 +68,13 @@ class NewAnimalsCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with viewModel: NewAnimalsCellViewModel) {
+        animalsNameLabel.text = viewModel.name
+        animalsDescriptionLabel.text = viewModel.description
+        animalsImageView.sd_setImage(with: viewModel.artworkURL, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
+        
+    }
+    
+    func configureCoreData(with viewModel: PetsViewModelEntity) {
         animalsNameLabel.text = viewModel.name
         animalsDescriptionLabel.text = viewModel.description
         animalsImageView.sd_setImage(with: viewModel.artworkURL, placeholderImage: UIImage(systemName: "photo"), options: .continueInBackground, completed: nil)
