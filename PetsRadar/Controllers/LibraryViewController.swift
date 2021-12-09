@@ -19,7 +19,6 @@ class LibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadBalances()
         view.backgroundColor = .systemBackground
         configureCollectionView()
     }
@@ -38,6 +37,14 @@ class LibraryViewController: UIViewController {
         collectionView.frame = view.bounds
     }
     
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
+        loadBalances()
+        collectionView.reloadData()
+        
+    }
     func loadBalances() {
         let request: NSFetchRequest<PetsViewModelEntity> = PetsViewModelEntity.fetchRequest()
      

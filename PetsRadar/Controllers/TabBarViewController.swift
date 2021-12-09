@@ -18,7 +18,7 @@ class TabBarViewController: UITabBarController {
         
         vc1.title = "Browse"
         vc2.title = "Search"
-        vc3.title = "Library"
+        vc3.title = "Favorites"
         
         vc1.navigationItem.largeTitleDisplayMode = .always
         vc2.navigationItem.largeTitleDisplayMode = .always
@@ -34,7 +34,7 @@ class TabBarViewController: UITabBarController {
         
         nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag:  1)
         nav2.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag:  2)
-        nav3.tabBarItem = UITabBarItem(title: "Library", image: UIImage(systemName: "music.note.list"), tag:  1)
+        nav3.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), tag:  3)
     
     
         nav1.navigationBar.prefersLargeTitles = true

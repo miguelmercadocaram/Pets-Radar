@@ -70,13 +70,47 @@ class HomeViewController: UIViewController {
         configureCollectionView()
         view.addSubview(spinner)
         
-      
+        addLongTapGesture()
   
         
 
     }
     
-    func saveBalances() {
+    private func addLongTapGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+        collectionView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else {
+            return
+        }
+        let touchPoint = gesture.location(in: collectionView)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: touchPoint) else {
+            return
+        }
+        let model = viewModels[indexPath.row]
+        
+        let actionSheet = UIAlertController(title: model.name, message: "Would you like to add this to favorites?", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Add to Favorites", style: .default, handler: { [weak self] _ in
+            let petsCoreModel = PetsViewModelEntity(context: self!.context)
+            
+            petsCoreModel.name = model.name
+            petsCoreModel.artworkURL = model.artworkURL
+            petsCoreModel.tag = model.tag
+            
+            self?.favoritesCoreDataModel.append(petsCoreModel)
+            
+            self?.savePets()
+         
+        }))
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func savePets() {
         do {
             try context.save()
         }catch {
@@ -145,13 +179,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let newPets = viewModels[indexPath.row]
 //            cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
            
-        let petsCoreModel = PetsViewModelEntity(context: self.context)
-        
-        petsCoreModel.name = newPets.name
-        petsCoreModel.artworkURL = newPets.artworkURL
-        petsCoreModel.tag = newPets.tag
-        
-        self.favoritesCoreDataModel.append(petsCoreModel)
+//        let petsCoreModel = PetsViewModelEntity(context: self.context)
+//        
+//        petsCoreModel.name = newPets.name
+//        petsCoreModel.artworkURL = newPets.artworkURL
+//        petsCoreModel.tag = newPets.tag
+//        
+//        self.favoritesCoreDataModel.append(petsCoreModel)
         
         
         
