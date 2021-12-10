@@ -126,11 +126,11 @@ extension LibraryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let newPets = petsLoadViewModel[indexPath.row]
 
         cell.configureCoreData(with: newPets)
-       // cell.configure(with: newPets)
         return cell
         
         
     }
+    
     
     public static func createSectionLayout(section: Int) -> NSCollectionLayoutSection {
 

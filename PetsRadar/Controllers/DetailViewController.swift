@@ -10,17 +10,17 @@ import SDWebImage
 
 class DetailViewController: UIViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewCompositionalLayout(sectionProvider: {_,_ in
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2, bottom: 1, trailing: 2)
-        
-        // Group
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(60)), subitem: item, count: 1)
-        
-        // Section
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(300)), subitem: item, count: 2)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+      
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.51)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         ]
+     
+        
         return section
     }))
     
@@ -29,6 +29,8 @@ class DetailViewController: UIViewController {
     private var animal: [Animal] = []
 
     private var animals: NewAnimalsCellViewModel
+    
+    private var newViewModels = [NewAnimalsCellViewModel]()
     
     init(animals: NewAnimalsCellViewModel) {
         self.animals = animals
@@ -46,36 +48,26 @@ class DetailViewController: UIViewController {
         
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(DetailCollectionViewCell.self, forCellWithReuseIdentifier: DetailCollectionViewCell.identifier)
+        collectionView.register(NewAnimalsCollectionViewCell.self, forCellWithReuseIdentifier: NewAnimalsCollectionViewCell.identifier)
         collectionView.register(DetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailCollectionReusableView.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
-//        APICaller.shared.getAnimals { [weak self] result in
-//            switch result {
-//            case .success(let model):
-//                DispatchQueue.main.async {
-//                    self?.animal = model
-//
-//                    self?.collectionView.reloadData()
-//                }
-//
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-        
-//        APICaller.shared.getAnimalsID(animalId: animals) { [weak self] result in
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let model):
-//
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
-//        }
-        
+
+        APICaller.shared.getAnimals { [weak self] result in
+            switch result {
+            case .success(let model):
+                DispatchQueue.main.async {
+                    self?.newViewModels = model.compactMap({
+                        NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "No description", artworkURL: URL(string: $0.photos?.first?.large ?? "-"), status: $0.status, age: $0.age, email: $0.contact?.email, phone: $0.contact?.phone, address: $0.contact?.address?.address1, city: $0.contact?.address?.city, breed: $0.breeds?.primary, gender: $0.gender, tag: $0.tags?.first, color: $0.colors?.primary)
+                    })
+                    self?.collectionView.reloadData()
+                }
+
+            case .failure(let error):
+                print(error)
+            }
+        }
         
         
     }
@@ -92,13 +84,15 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 40
+        return newViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailCollectionViewCell.identifier, for: indexPath) as? DetailCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewAnimalsCollectionViewCell.identifier, for: indexPath) as? NewAnimalsCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let pets = newViewModels[indexPath.row]
+        cell.configure(with: pets)
         return cell
     }
     
@@ -106,14 +100,19 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DetailCollectionReusableView.identifier, for: indexPath) as? DetailCollectionReusableView, kind == UICollectionView.elementKindSectionHeader else {
             return UICollectionReusableView()
         }
-//        let headerViewModel = DetailsCollectionViewCellViewModel(name: animal.first?.name, age: animal.first?.age, description: animal.first?.description ?? "-", photos: URL(string: animal.first?.photos?.first?.large ?? "-"), tags: animal.first?.tags?.first)
-       // let headerViewModel = DetailsCollectionViewCellViewModel(name: animals.name, age: animals.age, description: animals.description ?? "No Description", photos: URL(string: animals.photos?.first?.large ?? ""), tags: animals.tags?.first)
-       // let headerViewModel = NewAnimalsCellViewModel(name: animals.name, description: animals.description, artworkURL: animals.artworkURL)
        
         
-        let headerViewModel =  NewAnimalsCellViewModel(name: animals.name, description: animals.description ?? "No description", artworkURL: animals.artworkURL, status: animals.status, age: animals.age, email: animals.email, phone: animals.phone, address: animals.address, city: animals.city, breed: animals.breed, gender: animals.gender, tag: animals.tag, color: animals.color)
+        let headerViewModel =  NewAnimalsCellViewModel(name: animals.name, description: animals.description, artworkURL: animals.artworkURL, status: animals.status, age: animals.age, email: animals.email, phone: animals.phone, address: animals.address, city: animals.city, breed: animals.breed, gender: animals.gender, tag: animals.tag, color: animals.color)
          header.configure(with: headerViewModel)
         return header
  
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pets = newViewModels[indexPath.row]
+        let detailVC = DetailViewController(animals: pets)
+        detailVC.title = pets.name
+        detailVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

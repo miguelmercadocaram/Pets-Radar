@@ -102,6 +102,7 @@ class DetailCollectionReusableView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    
         addSubview(imageView)
         addSubview(nameLabel)
         addSubview(descriptionLabel)
@@ -112,6 +113,7 @@ class DetailCollectionReusableView: UICollectionReusableView {
         addSubview(genderLabel)
         addSubview(emailLabel)
         addSubview(phoneLabel)
+       
         
         
     }
@@ -124,16 +126,16 @@ class DetailCollectionReusableView: UICollectionReusableView {
         let imageSize: CGFloat = height/1.8
         imageView.frame = CGRect(x: (width-imageSize)/2, y: 20, width: imageSize, height: imageSize)
         
-        nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 44)
+        nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 30)
        
-        tagsLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 44)
-        descriptionLabel.frame = CGRect(x: 10, y: tagsLabel.bottom, width: width, height: 70)
-        ageLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width, height: 70)
-        breedLabel.frame = CGRect(x: 10, y: ageLabel.bottom, width: width, height: 70)
-        colorLabel.frame = CGRect(x: 10, y: breedLabel.bottom, width: width, height: 70)
-        genderLabel.frame = CGRect(x: 10, y: colorLabel.bottom, width: width, height: 70)
-        emailLabel.frame = CGRect(x: 10, y: genderLabel.bottom, width: width, height: 70)
-        phoneLabel.frame = CGRect(x: 10, y: emailLabel.bottom, width: width, height: 70)
+        tagsLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 20)
+        descriptionLabel.frame = CGRect(x: 10, y: tagsLabel.bottom, width: width, height: 30)
+        ageLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width, height: 20)
+        breedLabel.frame = CGRect(x: 10, y: ageLabel.bottom, width: width, height: 20)
+        colorLabel.frame = CGRect(x: 10, y: breedLabel.bottom, width: width, height: 20)
+        genderLabel.frame = CGRect(x: 10, y: colorLabel.bottom, width: width, height: 20)
+        emailLabel.frame = CGRect(x: 10, y: genderLabel.bottom, width: width, height: 20)
+        phoneLabel.frame = CGRect(x: 10, y: emailLabel.bottom, width: width, height: 20)
         
         
         
