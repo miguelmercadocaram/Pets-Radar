@@ -12,7 +12,7 @@ struct NewAnimalsCellViewModel {
     let description: String
     let artworkURL: URL?
     let status: String?
-    let age: String?
+    let age: String
     let email: String?
     let phone: String?
     let address: String?

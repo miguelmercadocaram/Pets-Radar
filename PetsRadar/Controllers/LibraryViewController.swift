@@ -21,6 +21,7 @@ class LibraryViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureCollectionView()
+        addLongTapGesture()
     }
     
     private func configureCollectionView() {
@@ -37,12 +38,55 @@ class LibraryViewController: UIViewController {
         collectionView.frame = view.bounds
     }
     
+    
+    private func addLongTapGesture() {
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPress(_:)))
+        collectionView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func didLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else {
+            return
+        }
+        let touchPoint = gesture.location(in: collectionView)
+        
+        guard let indexPath = collectionView.indexPathForItem(at: touchPoint) else {
+            return
+        }
+        let model = petsLoadViewModel[indexPath.row]
+        
+        let actionSheet = UIAlertController(title: model.name, message: "Would you like to delete this from favorites?", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+          
+            self?.context.delete(model)
+            self?.savePets()
+            self?.petsLoadViewModel.removeAll()
+            self?.loadBalances()
+            self?.collectionView.reloadData()
+         
+        }))
+
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func savePets() {
+        do {
+            try context.save()
+        }catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
        
         loadBalances()
         collectionView.reloadData()
+        
+        
         
     }
     func loadBalances() {

@@ -91,6 +91,7 @@ class HomeViewController: UIViewController {
             return
         }
         let model = viewModels[indexPath.row]
+        print(model)
         
         let actionSheet = UIAlertController(title: model.name, message: "Would you like to add this to favorites?", preferredStyle: .actionSheet)
         
@@ -100,13 +101,14 @@ class HomeViewController: UIViewController {
             
             petsCoreModel.name = model.name
             petsCoreModel.artworkURL = model.artworkURL
-            petsCoreModel.tag = model.tag
+            petsCoreModel.gender = model.gender
             
             self?.favoritesCoreDataModel.append(petsCoreModel)
             
             self?.savePets()
          
         }))
+
         present(actionSheet, animated: true, completion: nil)
     }
     
@@ -127,7 +129,9 @@ class HomeViewController: UIViewController {
                         self?.viewModels.append(contentsOf: model.compactMap({
                             //NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "-", artworkURL: URL(string: $0.photos?.first?.large ?? "-"))
                             NewAnimalsCellViewModel(name: $0.name, description: $0.description ?? "No description", artworkURL: URL(string: $0.photos?.first?.large ?? "-"), status: $0.status, age: $0.age, email: $0.contact?.email, phone: $0.contact?.phone, address: $0.contact?.address?.address1, city: $0.contact?.address?.city, breed: $0.breeds?.primary, gender: $0.gender, tag: $0.tags?.first, color: $0.colors?.primary)
+                            
                         }))
+                       
                         
                         self?.collectionView.reloadData()
                       
@@ -177,17 +181,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         
             let newPets = viewModels[indexPath.row]
-//            cell.configure(with: NewAnimalsCellViewModel(name: newPets.name, description: newPets.status ?? "-", artworkURL: URL(string: newPets.photos?.first?.large ?? "_")))
-           
-//        let petsCoreModel = PetsViewModelEntity(context: self.context)
-//        
-//        petsCoreModel.name = newPets.name
-//        petsCoreModel.artworkURL = newPets.artworkURL
-//        petsCoreModel.tag = newPets.tag
-//        
-//        self.favoritesCoreDataModel.append(petsCoreModel)
-        
-        
+
         
         cell.configure(with: newPets)
         return cell
