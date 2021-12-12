@@ -71,21 +71,23 @@ class DetailCollectionReusableView: UICollectionReusableView {
         return label
     }()
     
-    private let emailLabel: UILabel = {
-        let label = UILabel()
+    private let emailLabel: UITextView = {
+        let label = UITextView()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .light)
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.isEditable = false;
+        label.dataDetectorTypes = UIDataDetectorTypes.all;
         return label
     }()
     
-    private let phoneLabel: UILabel = {
-        let label = UILabel()
+    private let phoneLabel: UITextView = {
+        let label = UITextView()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 18, weight: .light)
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.isEditable = false;
+        label.dataDetectorTypes = UIDataDetectorTypes.all;
         return label
     }()
     
@@ -134,8 +136,8 @@ class DetailCollectionReusableView: UICollectionReusableView {
         breedLabel.frame = CGRect(x: 10, y: ageLabel.bottom, width: width, height: 20)
         colorLabel.frame = CGRect(x: 10, y: breedLabel.bottom, width: width, height: 20)
         genderLabel.frame = CGRect(x: 10, y: colorLabel.bottom, width: width, height: 20)
-        emailLabel.frame = CGRect(x: 10, y: genderLabel.bottom, width: width, height: 20)
-        phoneLabel.frame = CGRect(x: 10, y: emailLabel.bottom, width: width, height: 20)
+        emailLabel.frame = CGRect(x: 10, y: genderLabel.bottom, width: width, height: 30)
+        phoneLabel.frame = CGRect(x: 10, y: emailLabel.bottom, width: width, height: 30)
         
         
         

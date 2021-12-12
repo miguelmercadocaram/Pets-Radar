@@ -43,6 +43,8 @@ final class AuthManager {
     
     struct Constants {
         static let tokenAPIURL = "https://api.petfinder.com/v2/oauth2/token"
+       static let clientSecret = "hKJClYqQCx2iW2zUvXZl5eRMrZ1fZfdUTf68OAp1"
+        static let clientID = "4fStTeEdfj0cO1LPwPltyDvGlNxH7IPJlVvFrNpvLlrqooANXE"
 
     }
     
@@ -65,8 +67,8 @@ final class AuthManager {
         var components = URLComponents()
         components.queryItems = [
         URLQueryItem(name: "grant_type", value: "client_credentials"),
-        URLQueryItem(name: "client_id", value: getKeys().value(forKey: "clientID") as? String),
-        URLQueryItem(name: "client_secret", value: getKeys().value(forKey: "clientSecret") as? String),
+        URLQueryItem(name: "client_id", value: Constants.clientID),
+        URLQueryItem(name: "client_secret", value: Constants.clientSecret),
         ]
         
         var request = URLRequest(url: url)

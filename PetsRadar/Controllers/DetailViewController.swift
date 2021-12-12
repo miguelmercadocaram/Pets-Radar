@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
       
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.51)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.58)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         ]
      
         
